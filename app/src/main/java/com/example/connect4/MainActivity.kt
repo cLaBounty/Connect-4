@@ -135,6 +135,11 @@ private fun Connect4Grid(board: C4Board, onItemClick: (Int) -> Unit) {
 
 @Composable
 private fun Connect4GridItem(piece: Piece, onClick: () -> Unit) {
+    val color = when(piece) {
+        Piece.Empty -> MaterialTheme.colors.background
+        Piece.Black -> Color.Yellow
+        Piece.Red -> Color.Red
+    }
     Canvas(
         modifier = Modifier
             .fillMaxSize()
@@ -143,7 +148,7 @@ private fun Connect4GridItem(piece: Piece, onClick: () -> Unit) {
             .clickable { onClick() }
     ) {
         drawCircle(
-            color = if (piece == Piece.Empty) Color.White else if (piece == Piece.Black) Color.Black else Color.Red,
+            color = color,
             radius = size.minDimension / 2f
         )
     }
